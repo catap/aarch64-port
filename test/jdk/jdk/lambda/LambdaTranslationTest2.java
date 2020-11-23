@@ -25,6 +25,7 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -160,7 +161,7 @@ public class LambdaTranslationTest2 {
     }
 
     static String pb(Byte a0, Short a1, Character a2, Integer a3, Long a4, Boolean a5, Float a6, Double a7) {
-        return String.format("b%d s%d c%c i%d j%d z%b f%f d%f", a0, a1, a2, a3, a4, a5, a6, a7);
+        return String.format(Locale.US, "b%d s%d c%c i%d j%d z%b f%f d%f", a0, a1, a2, a3, a4, a5, a6, a7);
     }
 
     static String pwI1(int a0, int a1, int a2, int a3) {
@@ -168,23 +169,23 @@ public class LambdaTranslationTest2 {
     }
 
     static String pwI2(Integer a0, Integer a1, Integer a2, Integer a3) {
-        return String.format("b%d s%d c%d i%d", a0, a1, a2, a3);
+        return String.format(Locale.US, "b%d s%d c%d i%d", a0, a1, a2, a3);
     }
 
     static String pwL1(long a0, long a1, long a2, long a3, long a4) {
-        return String.format("b%d s%d c%d i%d j%d", a0, a1, a2, a3, a4);
+        return String.format(Locale.US, "b%d s%d c%d i%d j%d", a0, a1, a2, a3, a4);
     }
 
     static String pwL2(Long a0, Long a1, Long a2, Long a3, Long a4) {
-        return String.format("b%d s%d c%d i%d j%d", a0, a1, a2, a3, a4);
+        return String.format(Locale.US, "b%d s%d c%d i%d j%d", a0, a1, a2, a3, a4);
     }
 
     static String pwS1(short a0, short a1) {
-        return String.format("b%d s%d", a0, a1);
+        return String.format(Locale.US, "b%d s%d", a0, a1);
     }
 
     static String pwS2(Short a0, Short a1) {
-        return String.format("b%d s%d", a0, a1);
+        return String.format(Locale.US, "b%d s%d", a0, a1);
     }
 
     static String pwD1(double a0, double a1) {
@@ -216,19 +217,19 @@ public class LambdaTranslationTest2 {
     }
 
     static String pu(byte a0, short a1, char a2, int a3, long a4, boolean a5, float a6, double a7) {
-        return String.format("b%d s%d c%c i%d j%d z%b f%f d%f", a0, a1, a2, a3, a4, a5, a6, a7);
+        return String.format(Locale.US, "b%d s%d c%c i%d j%d z%b f%f d%f", a0, a1, a2, a3, a4, a5, a6, a7);
     }
 
     public void testUnboxing() {
         Unbox u = LambdaTranslationTest2::pu;
-        String expected = String.format("b%d s%d c%c i%d j%d z%b f%f d%f",
+        String expected = String.format(Locale.US, "b%d s%d c%c i%d j%d z%b f%f d%f",
                                     (byte)1, (short) 2, 'A', 4, 5L, true, 6.0f, 7.0);
         assertEquals(expected, u.m((byte)1, (short) 2, 'A', 4, 5L, true, 6.0f, 7.0));
     }
 
     public void testBoxing() {
         Box b = LambdaTranslationTest2::pb;
-        String expected = String.format("b%d s%d c%c i%d j%d z%b f%f d%f",
+        String expected = String.format(Locale.US, "b%d s%d c%c i%d j%d z%b f%f d%f",
                                     (byte) 1, (short) 2, 'A', 4, 5L, true,  6.0f, 7.0);
         assertEquals(expected, b.m((byte) 1, (short) 2, 'A', 4, 5L, true, 6.0f, 7.0));
     }

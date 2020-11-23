@@ -21,6 +21,7 @@
  * questions.
  */
 
+import java.util.Locale
 import java.util.function.Consumer;
 
 import org.testng.annotations.Test;
@@ -62,7 +63,7 @@ public class LambdaTranslationTest1 extends LT1Sub {
     }
 
     static void deye(double d) {
-        setResult(String.format("d:%f", d));
+        setResult(String.format(Locale.US, "d:%f", d));
     }
 
     public void testLambdas() {
@@ -137,7 +138,7 @@ public class LambdaTranslationTest1 extends LT1Sub {
 
         LT1IA da = LambdaTranslationTest1::deye;
         da.doit(1234);
-        assertResult(String.format("d:%f", 1234.0));
+        assertResult(String.format(Locale.US, "d:%f", 1234.0));
 
         LT1SA a = LambdaTranslationTest1::count;
         assertEquals((Integer) 5, a.doit("howdy"));
